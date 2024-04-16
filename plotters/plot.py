@@ -4,16 +4,22 @@ from gapminder import gapminder
 
 def plot():
     figura = (
-        so.Plot(gapminder[["continent", "country"]].drop_duplicates(), x="continent")
-        .add(so.Bar(), so.Hist())
+        so.Plot(
+            gapminder[gapminder.continent == "Africa"],
+            x="year",
+            y="pop",
+            color="gdpPercap",
+        )
+        .add(so.Line())
         .label(
-            title="Cantidad de países por continente",
-            x="Continente",
-            y="Cantidad de países",
+            title="Expectativa",
+            x="Año",
+            y="Expectativa de vida",
+            color="País",
         )
     )
     return dict(
-        descripcion="Un sofisticado gráfico con el número de países en cada continente",
-        autor="La cátedra",
+        descripcion="El crecimiento de la poblacion de Africa a travéz de los años y donde también se puede observar el PBI",
+        autor="Caterina Nagela",
         figura=figura,
     )
